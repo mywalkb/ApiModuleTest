@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 import io.github.xposed.xposedservice.IXposedService;
 import io.github.xposed.xposedservice.models.Application;
-import io.github.xposed.xposedservice.utils.ParceledListSlice;
 
 public class MainActivity extends Activity
 {
@@ -37,7 +36,7 @@ public class MainActivity extends Activity
             Log.i(TAG, "getXposedVersionCode " + ser.getXposedVersionCode());
             Log.i(TAG, "getApi " + ser.getApi());
             var lst = ser.getModuleScope();
-            for (var app: lst.getList()) {
+            for (var app: lst) {
                 Log.i(TAG, "getModulScope " + app.packageName + " " + app.userId);
             }
         } catch (RemoteException e) {
@@ -53,7 +52,7 @@ public class MainActivity extends Activity
             listapp.add(app);
         }
         try {
-            ser.setModuleScope(new ParceledListSlice<>(listapp));
+            ser.setModuleScope(listapp);
         } catch (RemoteException e) {
             Log.e(TAG, "setModuleScope RemoteException", e);
         }
