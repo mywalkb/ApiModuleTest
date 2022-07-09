@@ -30,6 +30,10 @@ public class MainActivity extends Activity
 
     public void click(android.view.View x)
     {
+        if (ser == null) {
+            Log.e(TAG, "ensure your module is enabled and you have installed mywalkb/LSPosed_mod");
+            return;
+        }
         try {
             Log.i(TAG, "getXposedVersionName " + ser.getXposedVersionName());
             Log.i(TAG, "getXposedApiVersion " + ser.getXposedApiVersion());
